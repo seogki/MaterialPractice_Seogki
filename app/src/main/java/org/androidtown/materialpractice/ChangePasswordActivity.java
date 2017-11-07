@@ -37,6 +37,7 @@ public class ChangePasswordActivity extends Activity {
     String ChgPwd;
     SharedPreferences Loginhistory;
     SharedPreferences.Editor history;
+    //git
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
