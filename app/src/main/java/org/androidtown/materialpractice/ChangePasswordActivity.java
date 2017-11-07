@@ -30,14 +30,14 @@ import static org.androidtown.materialpractice.SHA.setSHA;
  */
 
 public class ChangePasswordActivity extends Activity {
-//nochange
+
     Button ChgBtn;
     EditText chgPwdEditText;
     String UUID;
     String ChgPwd;
     SharedPreferences Loginhistory;
     SharedPreferences.Editor history;
-    //git
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
