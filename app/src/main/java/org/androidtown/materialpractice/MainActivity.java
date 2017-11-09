@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     private InformationFragment informationFragment;
     private BackupImgFragment backupImgFragment;
     private MainFragment mainFragment;
+    private SettingFragment settingFragment;
     static ImageView mainImg;
     public TextView mainName;
     public TextView mainJik;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity
          * 사용할 프래그먼트 인스턴스 가져오기.
          */
         communicateFragment = CommunicateFragment.newInstance();
+        settingFragment = SettingFragment.newInstance();
         informationFragment = InformationFragment.newInstance();
         mainFragment = MainFragment.newInstance();
         applicationManagerFragment = ApplicationManagerFragment.newInstance();
@@ -246,7 +248,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_device) {
 
         } else if (id == R.id.nav_Img){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fl_activity_main,backupImgFragment).commit();
 
+        }
+          else if (id ==R.id.nav_setting){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fl_activity_main,settingFragment).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
