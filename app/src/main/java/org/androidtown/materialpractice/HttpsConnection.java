@@ -717,7 +717,6 @@ public class HttpsConnection {
 
                 String urlString = paramURL;
                 HttpURLConnection conn = null;
-                Log.d("camera1","6");
                 try{
                     Log.d("이미지백업","백업");
                     URL url = new URL(urlString);
@@ -776,7 +775,7 @@ public class HttpsConnection {
                     out.write(File);
                     out.writeBytes(crlf);
                     out.writeBytes(twoHyphens + boundary + twoHyphens + crlf);
-                    Log.d("camera1","6");
+
 
                     out.flush();
                     out.close();

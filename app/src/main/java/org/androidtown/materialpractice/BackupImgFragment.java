@@ -306,9 +306,11 @@ public class BackupImgFragment extends Fragment {
                 ContactsContract.CommonDataKinds.Email.DATA
         };
 
-        if(ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_DENIED)
+        if(ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_DENIED)
         {
-            ContentResolver contentResolver= getActivity().getApplicationContext().getContentResolver();
+            ContentResolver contentResolver= getActivity().
+                    getApplicationContext().getContentResolver();
             Cursor infoCursor = contentResolver.query(
                     ContactsContract.Contacts.CONTENT_URI, arrProjection,
                     ContactsContract.Contacts.HAS_PHONE_NUMBER + "=1",
@@ -348,7 +350,6 @@ public class BackupImgFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-
                 numberCursor.close();
 
                 Cursor emailCursor = contentResolver.query(
@@ -357,7 +358,6 @@ public class BackupImgFragment extends Fragment {
                         ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + ContactId,
                         null,null
                 );
-
                 while(emailCursor.moveToNext())
                 {
                     Log.d("연락처테스트","사용자이메일:" + emailCursor.getString(0));
@@ -393,7 +393,8 @@ public class BackupImgFragment extends Fragment {
                 String path = String.valueOf(object);
                 Uri uri = Uri.parse(String.valueOf(object));
                 Log.d("path:", String.valueOf(uri));
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(mContext.getContentResolver(),uri);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap
+                        (mContext.getContentResolver(),uri);
                 if(bitmap == null)
                 {
                     Log.d("비트맵:","null");
@@ -410,7 +411,9 @@ public class BackupImgFragment extends Fragment {
                     Log.d("파일해당번호:", String.valueOf(i));
                     Log.d("파일 바이트:", String.valueOf(bytes));
                     HttpsConnection ht = new HttpsConnection();
-                    ht.imgBackup("https://58.141.234.126:50030/img_backup",Userinfo.getString("Id","fail"),bytes,buffer[8],String.valueOf(List.size()),String.valueOf(i),"no");
+                    ht.imgBackup("https://58.141.234.126:50030/img_backup",
+                            Userinfo.getString("Id","fail"),bytes,buffer[8],
+                            String.valueOf(List.size()),String.valueOf(i),"no");
                     bitmap.recycle();
                     bitmap = null;
                     bytearray.reset();
@@ -435,7 +438,9 @@ public class BackupImgFragment extends Fragment {
         String ext = Environment.getExternalStorageDirectory().toString();
         Uri FileUri = Uri.parse(ext);
         String filePath2 = FileUri.getPath();
-        if(ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_DENIED) {
+        if(ContextCompat.checkSelfPermission(context,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_DENIED) {
             String[] projection = {MediaStore.Images.Media.DATA};
             ContentResolver contentResolver = context.getContentResolver();
             Cursor imageCursor = contentResolver.query(
@@ -475,13 +480,13 @@ public class BackupImgFragment extends Fragment {
      * 오픈소스 사용
      * https://github.com/ParkSangGwon/TedBottomPicker
      */
-    private void getGallary()
-    {
-        TedBottomPicker bottomSheetDialogFragment = new TedBottomPicker.Builder(getActivity().getApplicationContext())
-                .setOnMultiImageSelectedListener(new TedBottomPicker.OnMultiImageSelectedListener() {
+    private void getGallary() {
+        TedBottomPicker bottomSheetDialogFragment =
+                new TedBottomPicker.Builder(getActivity().getApplicationContext())
+                .setOnMultiImageSelectedListener
+                        (new TedBottomPicker.OnMultiImageSelectedListener() {
                     @Override
                     public void onImagesSelected(final ArrayList<Uri> uriList) {
-                        // here is selected uri list
                         ProgressDialog("up");
                         Thread thread = new Thread(new Runnable()
                         {
@@ -507,9 +512,9 @@ public class BackupImgFragment extends Fragment {
         dialog = new ProgressDialog(getActivity());
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         if(flag.equals("down"))
-            dialog.setTitle("              이미지 다운로드");
+            dialog.setTitle("              다운로드");
         else if(flag.equals("up"))
-            dialog.setTitle("              이미지 업로드");
+            dialog.setTitle("              업로드");
         dialog.setCancelable(false);
         dialog.show();
     }

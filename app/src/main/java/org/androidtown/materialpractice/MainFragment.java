@@ -70,9 +70,10 @@ public class MainFragment extends Fragment implements MainFragmentPresenter.View
     private SettingFragment settingFragment;
     private ResultFragment resultFragment;
     private SharedPreferences Userinfo;
-    private SharedPreferences networkFlag;
     private SharedPreferences loginHistory;
     private SharedPreferences.Editor networkEditor;
+
+    private  SharedPreferences networkFlag;
 
     private AlarmManager al;
 
